@@ -57,6 +57,58 @@ namespace TP1_Tests
 			Vector2D r = { 2, 2 };
 			Assert::IsTrue(Equals(&sub, &r));
 		}
+		TEST_METHOD(AngleBetweenDeg1)
+		{
+			Vector2D test1 = { 1, 1 };
+			Vector2D test2 = { 2, 2 };
+			float total = AngleBetweenDeg(&test1, &test2);
+			float result = 0;
+			Assert::IsTrue((total - result) < EPSILON);
+		}
+		TEST_METHOD(AngleBetweenDeg2)
+		{
+			Vector2D test1 = { 10, 10 };
+			Vector2D test2 = { -10, -10 };
+			float result = 180;
 
+			float total = AngleBetweenDeg(&test1, &test2);
+			Assert::IsTrue((total - result) < EPSILON);
+		}
+		TEST_METHOD(MoveBy1)
+		{
+			Vector2D test1 = {5,5};
+			Vector2D test2 = {10 , 10};
+			Vector2D desiredResult = { 15 , 15 };
+
+			MoveBy(&test1, &test2);
+			Assert::IsTrue(Equals(&test2, &desiredResult));
+		}
+		TEST_METHOD(MoveBy2)
+		{
+			Vector2D test1 = { 10, 10 };
+			Vector2D test2 = { -10 , -10 };
+			Vector2D desiredResult = { 0 , 0 };
+
+			MoveBy(&test1, &test2);
+			Assert::IsTrue(Equals(&test2, &desiredResult));
+		}
+		TEST_METHOD(ScaleBy1)
+		{
+			Vector2D test1 = { 5 , 5 };
+			const float scaleTest = 2.0f;
+			Vector2D desiredResult = { 10, 10 };
+
+			ScaleBy(&test1, scaleTest);
+			Assert::IsTrue(Equals(&test1, &desiredResult));
+		}
+		TEST_METHOD(ScaleBy2)
+		{
+			Vector2D test1 = { 10 , 10 };
+			const float scaleTest = -10.0f;
+			Vector2D desiredResult = { -100, -100 };
+
+			ScaleBy(&test1, scaleTest);
+			Assert::IsTrue(Equals(&test1, &desiredResult));
+		}
 	};
 }

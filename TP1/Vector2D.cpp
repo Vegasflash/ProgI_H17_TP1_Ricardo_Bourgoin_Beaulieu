@@ -24,19 +24,29 @@ Vector2D Scale(const Vector2D* vect, const float scale)
 	return v;
 }
 
-void MoveBy(const Vector2D* by, const Vector2D* toMove)
+void MoveBy(const Vector2D* by, Vector2D* toMove)
 {
-
+	Vector2D tempVector; 
+	tempVector = { toMove->x + by->x, toMove->y + by->y };
 }
 
 float GetPolarAngleDeg(const Vector2D* vect)
 {
-	return 0.0f;
+	float result = /*rad convert */ atan2f(vect->y , vect->x);
+	if (result == 0)
+		{
+			return result;
+		}
+	return result;
 }
 
 float AngleBetweenDeg(const Vector2D* left, const Vector2D* right)
 {
-	return 0.0f;
+	float fullRotation = 360.0f;
+	Vector2D tempVector = { (left->x - right->x), (left->y - right->y) };
+
+	float angleResult = GetPolarAngleDeg(&tempVector);
+	return angleResult;
 }
 
 float Length(const Vector2D* vect)
@@ -51,15 +61,21 @@ float LengthSq(const Vector2D* vect)
 
 bool Normalize(const Vector2D* vect)
 {
+
 	return false;
 }
 
-void ScaleBy(const Vector2D* vect, const float* scale)
+void ScaleBy(Vector2D* vect, const float scale)
 {
+	Vector2D tempVector;
+	tempVector = { vect->x * scale, vect->y * scale };
 }
 
 Vector2D GetVectorByAngleDeg(const float* angle)
 {
+	Vector2D tempVector;
+	float newResult;
+	 newResult = GetPolarAngleDeg(&tempVector);
 	return Vector2D();
 }
 
