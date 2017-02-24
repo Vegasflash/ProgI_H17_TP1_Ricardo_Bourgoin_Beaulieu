@@ -8,7 +8,7 @@ Vector2D Add(const Vector2D* const left, const Vector2D* const right)
 	return v;
 }
 
-Vector2D Substract(const Vector2D* left, const Vector2D* right)
+Vector2D Substract(const Vector2D* const left, const Vector2D* right)
 {
 	Vector2D v;
 	v.x = left->x - right->x;
@@ -24,15 +24,15 @@ Vector2D Scale(const Vector2D* vect, const float scale)
 	return v;
 }
 
-void MoveBy(const Vector2D* by, Vector2D* toMove)
-{
-	Vector2D tempVector; 
-	tempVector = { toMove->x + by->x, toMove->y + by->y };
+void MoveBy(const Vector2D* const by, Vector2D* toMove)
+{ 
+	toMove->x += by->x;
+	toMove->y += by->y;
 }
 
 float GetPolarAngleDeg(const Vector2D* vect)
 {
-	float result = /*rad convert */ atan2f(vect->y , vect->x);
+	float result = RadToDeg * atan2f(vect->y , vect->x);
 	if (result == 0)
 		{
 			return result;
@@ -51,17 +51,22 @@ float AngleBetweenDeg(const Vector2D* left, const Vector2D* right)
 
 float Length(const Vector2D* vect)
 {
-	return 0.0f;
+	return sqrt(LengthSq(vect));
 }
 
 float LengthSq(const Vector2D* vect)
 {
-	return 0.0f;
+	return (vect->x * vect->x + vect->y * vect->y);
 }
 
 bool Normalize(const Vector2D* vect)
 {
-
+	float length = Length(vect);
+	if (length != 0)
+	{
+		int x = vect->x / length;
+		int y = vect->y / length;
+	}
 	return false;
 }
 
